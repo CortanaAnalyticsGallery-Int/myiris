@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 35,
+  "id": "8fea2d85-0f49-40e5-821c-99f492cb76f0",
+  "activities": [
+    {
+      "id": "76bfc7b5-0cf2-491a-ab87-7c2d92131d87",
+      "name": "iris",
+      "blocks": [
+        {
+          "id": "29da4f8e-1a28-4dda-b723-bdd7950607c6",
+          "type": "Microsoft.DPrep.DataSourceBlock",
+          "arguments": {
+            "path": {
+              "target": 0,
+              "resourceDetails": [
+                {
+                  "path": "./iris.csv"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "3bd4c74e-375e-4634-a165-6113ad6d229a",
+          "type": "Microsoft.DPrep.ParseDelimitedBlock",
+          "arguments": {
+            "preview": false,
+            "columnHeadersMode": 0,
+            "separator": ",",
+            "fileEncoding": 0,
+            "skipRowsMode": 0,
+            "handleQuotedLineBreaks": false
+          }
+        },
+        {
+          "id": "6c69f3af-66d1-4ac5-b5f4-ddab073968a1",
+          "type": "Microsoft.DPrep.SetColumnTypesBlock",
+          "arguments": {
+            "columnConversion": [
+              {
+                "columnId": "Column1",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Column3",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Column2",
+                "typeProperty": 3,
+                "typeArguments": {}
+              },
+              {
+                "columnId": "Column4",
+                "typeProperty": 3,
+                "typeArguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "id": "2940dc4b-1cbe-4ac3-90b5-48482e6845d8",
+          "type": "Microsoft.DPrep.SampleBlock",
+          "arguments": {
+            "samples": [
+              {
+                "sampleId": "d5630473-fc8c-4813-aa57-b414418f55e3",
+                "sampleRevision": "702e76b9-2535-4c34-abaa-62a59a9eca36",
+                "sampleName": "Top 10000",
+                "sampleRunner": {
+                  "id": null,
+                  "type": 0
+                },
+                "remoteGeneratorProperties": {},
+                "sampleStrategy": 0,
+                "topArguments": {
+                  "sampleCount": 10000
+                },
+                "randomNArguments": {
+                  "sampleCount": 10000
+                },
+                "randomPercentArguments": {
+                  "probability": 0.1
+                },
+                "allowAutoGen": true,
+                "isDisabled": false
+              }
+            ],
+            "activeSample": "d5630473-fc8c-4813-aa57-b414418f55e3"
+          }
+        },
+        {
+          "id": "76070833-e7ec-49c0-8965-b6162ecf4cb8",
+          "type": "Microsoft.DPrep.HandlePathColumnBlock",
+          "arguments": {
+            "pathColumnOperation": 0
+          }
+        }
+      ],
+      "inspectors": [
+        {
+          "id": "04d7dc93-0ac5-4cad-9f45-71ffd5d09f2b",
+          "type": "Microsoft.DPrep.DataQualityInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "76bfc7b5-0cf2-491a-ab87-7c2d92131d87",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 1,
+              "referencedStepId": null,
+              "fallback": 1
+            },
+            "anonymousSteps": null
+          },
+          "isBackground": true
+        },
+        {
+          "id": "fe28407a-b87a-4f74-8dd3-941468786f09",
+          "type": "Microsoft.DPrep.DataProfileInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "76bfc7b5-0cf2-491a-ab87-7c2d92131d87",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 0,
+              "referencedStepId": "76070833-e7ec-49c0-8965-b6162ecf4cb8",
+              "fallback": 1
+            },
+            "anonymousSteps": null
+          },
+          "isBackground": true
+        }
+      ]
+    }
+  ],
+  "runConfigurations": []
+}
